@@ -5,9 +5,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 const Modal = (props) => {
 
     return (
-        <Dialog disableBackdropClick disableEscapeKeyDown open={true} aria-labelledby="form-dialog-title">
+        <Dialog disableBackdropClick disableEscapeKeyDown open={props.children[0].flag} aria-labelledby="form-dialog-title">
             <DialogContent>
-                {props.children}
+                {props.children[1]}
             </DialogContent>
         </Dialog>
     )

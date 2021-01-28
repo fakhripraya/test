@@ -1,3 +1,4 @@
+import Modal from './Modal';
 import React, { useState } from 'react';
 
 const Table = (children) => {
@@ -32,6 +33,9 @@ const Table = (children) => {
 }
 
 const TableContent = (children) => {
+
+    const [modalToggle, setModalToggle] = useState(false)
+    const [contentDetail, setContentDetail] = useState([])
 
     let renders = children.children.data
     let queryTitle = children.children.queryTitle
@@ -124,25 +128,66 @@ const TableContent = (children) => {
     // console.log("Movie data render")
     // console.log(renders)
 
+    function handleDetail(item) {
+        console.log(item)
+        setContentDetail(item)
+        if (modalToggle === false)
+            setModalToggle(true)
+        else
+            setModalToggle(false)
+    }
+
+    const TableContentDetail = (children) => {
+
+        return (
+            <Modal>
+                {{ flag: modalToggle }}
+                <div>
+                    <div>
+                        <img alt="ga ke load" src={children.children.image} />
+                    </div>
+                    <div>
+                        <div>
+                            <label>Title</label>
+                            <label> {children.children.title}</label>
+                        </div>
+                        <div>
+                            <label>Like</label>
+                            {children.children.like}
+                        </div>
+                        <div>
+                            <label>Show Time</label>
+                            {new Date(children.children.showTime).toLocaleDateString()}
+                        </div>
+                    </div>
+                    <div>
+                        <button onClick={() => { handleDetail([]) }}>back</button>
+                    </div>
+                </div>
+            </Modal>
+        );
+    }
+
     return (
         <React.Fragment>
             {renders.map((item, index) =>
-                <tbody>
+                <tbody key={index}>
                     <tr>
                         <td style={{ display: 'none' }}>{item.id}</td>
                         <td><img alt="ga ke load" src={item.image} /></td>
                         <td>{item.title}</td>
                         <td>{item.like}</td>
                         <td>{new Date(item.showTime).toLocaleDateString()}</td>
-                        <td><button>Detail</button></td>
+                        <td><button onClick={() => { handleDetail(item) }}>Detail</button></td>
                     </tr>
                 </tbody>
             )}
+            <TableContentDetail>
+                {contentDetail}
+            </TableContentDetail>
         </React.Fragment>
     );
 
 }
-
-
 
 export default Table;

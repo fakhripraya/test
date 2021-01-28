@@ -55,10 +55,6 @@ function Home() {
         setqueryTitle(e.target.value)
     }
 
-    function handleShowTime(e) {
-        setqueryShowTime(e.target.value)
-    }
-
     function handleLike(e) {
         setqueryLike(e.target.value)
     }
