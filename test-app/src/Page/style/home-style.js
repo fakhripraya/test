@@ -38,13 +38,35 @@ export const InputContent = styled.div`
 `
 
 export const SearchInput = styled.input`
-    height: 30px;
-    width: 200px;
+    outline: none;
+    height: 50px;
+    width: 300px;
     border-radius: 10px;
 `
 
 export const LikeInput = styled.input`
-    height: 30px;
-    width: 200px;
+    outline: none;
+    height: 50px;
+    width: 300px;
     border-radius: 10px;
+`
+
+export const AutoContainer = styled.div`
+    border-radius: 10px;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
+`
+
+export const AutoContent = styled.div`
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: '#333333';
+
+    &:hover{
+        background: rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+    }
 `

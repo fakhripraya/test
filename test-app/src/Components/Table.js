@@ -62,14 +62,6 @@ const TableContent = (children) => {
     let queryLikeToggle = children.children.queryLikeToggle
     let queryShowTime = children.children.queryShowTime
 
-    // console.log("data")
-    // console.log(renders)
-    // console.log(children.children.queryTitle)
-    // console.log(children.children.queryLike)
-    // console.log(children.children.queryLikeToggle)
-    console.log(children.children.queryShowTime)
-    console.log(new Date(queryShowTime).toLocaleDateString())
-
     if (queryTitle !== null && queryTitle !== "") {
         let slices = []
 
@@ -87,18 +79,10 @@ const TableContent = (children) => {
 
     }
 
-    // console.log("filters")
-    // console.log(renders)
-
     if (queryLike !== null) {
         let slices = []
 
         renders.forEach((item, index) => {
-
-            // query like toggle adalah fungsi untuk tentukan tipe filter mana yang dipakai kolom "like"
-            // 0 kurang dari
-            // 1 sama dengan
-            // 2 lebih dari
 
             if (queryLikeToggle === 0) {
                 if (item.like < queryLike) {
@@ -150,11 +134,8 @@ const TableContent = (children) => {
 
     }
 
-    // console.log("Movie data render")
-    // console.log(renders)
-
     function handleDetail(item) {
-        console.log(item)
+
         setContentDetail(item)
         if (modalToggle === false)
             setModalToggle(true)
@@ -174,15 +155,15 @@ const TableContent = (children) => {
                         </ContentThumbnail>
                         <ContentContainer>
                             <ContentData>
-                                <label style={{ fontSize: 22 }}>Title : </label>
+                                <label style={{ fontSize: 22, fontWeight: 'bold' }}>Title : </label>
                                 <label style={{ fontSize: 22 }}> {children.children.title}</label>
                             </ContentData>
                             <ContentData>
-                                <label style={{ fontSize: 22 }}>Like : </label>
+                                <label style={{ fontSize: 22, fontWeight: 'bold' }}>Like : </label>
                                 <label style={{ fontSize: 22 }}> {children.children.like}</label>
                             </ContentData>
                             <ContentData>
-                                <label style={{ fontSize: 22 }}>Show Time : </label>
+                                <label style={{ fontSize: 22, fontWeight: 'bold' }}>Show Time : </label>
                                 <label style={{ fontSize: 22 }}>{new Date(children.children.showTime).toLocaleDateString()}</label>
                             </ContentData>
                         </ContentContainer>
@@ -198,7 +179,7 @@ const TableContent = (children) => {
     return (
         <React.Fragment>
             {renders.map((item, index) =>
-                <TableBodyContainer key={index}>
+                <TableBodyContainer key={index} onClick={() => { handleDetail(item) }}>
                     <TableBody>
                         <BodyContent style={{ display: 'none' }}>{item.id}</BodyContent>
                         <BodyThumbnail><img style={{ borderRadius: '50%', backgroundSize: 'cover', height: '75%', width: '50%' }} alt="ga ke load" src={item.image} /></BodyThumbnail>

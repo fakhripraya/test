@@ -86,6 +86,7 @@ export const TableButton = styled.button`
     transition: all 0.2s ease-in-out;
     text-decoration: none;
     width: 150px;
+    
     &:hover{
         transition: all 0.2s ease-in-out;
         background: #fff;
