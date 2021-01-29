@@ -20,13 +20,12 @@ export const Title = styled.div`
 export const InputWrapper = styled.div`
     display: flex;
     flex-direction: 'row';
-    justify-content: flex-end;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
 `
 
 export const InputContainer = styled.div`
-    margin-right: 50px;
 `
 
 export const InputTitle = styled.div`
@@ -35,7 +34,7 @@ export const InputTitle = styled.div`
 `
 
 export const InputContent = styled.div`
-
+    margin-top: 10px;
 `
 
 export const SearchInput = styled.input`

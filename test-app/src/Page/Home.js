@@ -7,7 +7,7 @@ import {
     InputWrapper,
     InputContainer,
     MasterContainer,
-} from './style/home-style'
+} from './style/home-style';
 import Table from '../Components/Table';
 import { Movie } from '../APIS/MovieAPI';
 import DateTimePicker from 'react-datetime-picker';
@@ -70,7 +70,7 @@ function Home() {
                 <InputWrapper>
                     <InputContainer>
                         <InputTitle>
-                            Search
+                            <span style={{ fontSize: '28px' }}>Search</span>
                         </InputTitle>
                         <InputContent>
                             <SearchInput onChange={handleSearchTitle} />
@@ -78,7 +78,7 @@ function Home() {
                     </InputContainer>
                     <InputContainer>
                         <InputTitle>
-                            Show Time
+                            <span style={{ fontSize: '28px' }}>Show Time</span>
                         </InputTitle>
                         <InputContent>
                             <DateTimePicker
@@ -89,7 +89,7 @@ function Home() {
                     </InputContainer>
                     <InputContainer>
                         <InputTitle>
-                            Likes
+                            <span style={{ fontSize: '28px' }}>Like</span>
                         </InputTitle>
                         <InputContent>
                             <LikeInput type="number" onChange={handleLike} />

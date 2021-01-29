@@ -1,3 +1,15 @@
+import {
+    TableBody,
+    MasterTable,
+    BodyContent,
+    TableHeader,
+    TableButton,
+    HeaderContent,
+    BodyThumbnail,
+    HeaderThumbnail,
+    TableBodyContainer,
+    TableHeaderContainer,
+} from './style/table-style';
 import Modal from './Modal';
 import React, { useState } from 'react';
 
@@ -13,20 +25,21 @@ const Table = (children) => {
 
     return (
         <React.Fragment>
-            <table>
-                <thead>
-                    <tr>
-                        <th style={{ display: 'none' }}> ID</th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Like</th>
-                        <th>Show Time</th>
-                    </tr>
-                </thead>
+            <MasterTable style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <TableHeaderContainer>
+                    <TableHeader>
+                        <HeaderContent style={{ display: 'none' }}> ID</HeaderContent>
+                        <HeaderThumbnail><span style={{ color: 'white', fontSize: 28 }}>Image</span></HeaderThumbnail>
+                        <HeaderContent><span style={{ color: 'white', fontSize: 28 }}>Title</span></HeaderContent>
+                        <HeaderContent><span style={{ color: 'white', fontSize: 28 }}>Like</span></HeaderContent>
+                        <HeaderContent><span style={{ color: 'white', fontSize: 28 }}>Show Time</span></HeaderContent>
+                        <HeaderContent><span style={{ color: 'white', fontSize: 28 }}>Action</span></HeaderContent>
+                    </TableHeader>
+                </TableHeaderContainer>
                 <TableContent>
                     {tableContentData}
                 </TableContent>
-            </table>
+            </MasterTable>
         </React.Fragment>
     )
 
@@ -171,16 +184,16 @@ const TableContent = (children) => {
     return (
         <React.Fragment>
             {renders.map((item, index) =>
-                <tbody key={index}>
-                    <tr>
-                        <td style={{ display: 'none' }}>{item.id}</td>
-                        <td><img alt="ga ke load" src={item.image} /></td>
-                        <td>{item.title}</td>
-                        <td>{item.like}</td>
-                        <td>{new Date(item.showTime).toLocaleDateString()}</td>
-                        <td><button onClick={() => { handleDetail(item) }}>Detail</button></td>
-                    </tr>
-                </tbody>
+                <TableBodyContainer key={index}>
+                    <TableBody>
+                        <BodyContent style={{ display: 'none' }}>{item.id}</BodyContent>
+                        <BodyThumbnail><img style={{ borderRadius: '50%', backgroundSize: 'cover', height: '75%', width: '50%' }} alt="ga ke load" src={item.image} /></BodyThumbnail>
+                        <BodyContent><span style={{ fontSize: 22 }}>{item.title}</span></BodyContent>
+                        <BodyContent><span style={{ fontSize: 22 }}>{item.like}</span></BodyContent>
+                        <BodyContent><span style={{ fontSize: 22 }}>{new Date(item.showTime).toLocaleDateString()}</span></BodyContent>
+                        <BodyContent><TableButton onClick={() => { handleDetail(item) }}><span>Detail</span></TableButton></BodyContent>
+                    </TableBody>
+                </TableBodyContainer>
             )}
             <TableContentDetail>
                 {contentDetail}
