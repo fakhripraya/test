@@ -20,7 +20,7 @@ function Home() {
     const [queryTitle, setqueryTitle] = useState("")
     const [queryShowTime, setqueryShowTime] = useState(null)
     const [queryLike, setqueryLike] = useState(0)
-    const [queryLikeToggle, setqueryLikeToggle] = useState(2)
+    const [queryLikeToggle, setqueryLikeToggle] = useState(3)
 
     useEffect(() => {
 
@@ -74,6 +74,13 @@ function Home() {
                         </InputTitle>
                         <InputContent>
                             <SearchInput onChange={handleSearchTitle} />
+                            {/* {display && (
+                                <div>
+                                    {
+
+                                    }
+                                </div>
+                            )} */}
                         </InputContent>
                     </InputContainer>
                     <InputContainer>

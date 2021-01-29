@@ -92,3 +92,52 @@ export const TableButton = styled.button`
         color: #362F4B;
     }
 `
+
+export const ModalContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+`
+export const ContentWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    justify-content: 'center';
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+`
+
+export const ContentThumbnail = styled.div`
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+`
+
+export const ContentContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+`
+
+export const ContentData = styled.div`
+margin-top: 10px;
+margin-bottom: 10px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+`
+
+export const ContentButtonWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    margin-bottom: 20px;
+`

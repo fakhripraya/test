@@ -4,11 +4,17 @@ import {
     BodyContent,
     TableHeader,
     TableButton,
+    ContentData,
     HeaderContent,
     BodyThumbnail,
+    ModalContainer,
+    ContentWrapper,
     HeaderThumbnail,
+    ContentThumbnail,
+    ContentContainer,
     TableBodyContainer,
     TableHeaderContainer,
+    ContentButtonWrapper,
 } from './style/table-style';
 import Modal from './Modal';
 import React, { useState } from 'react';
@@ -70,7 +76,7 @@ const TableContent = (children) => {
         renders.forEach((item, index) => {
 
             // case sensitive
-            if (item.title.includes(queryTitle)) {
+            if (item.title.toUpperCase().includes(queryTitle.toUpperCase())) {
                 let tempSlices = [...slices, item]
                 slices = tempSlices
             }
@@ -107,6 +113,12 @@ const TableContent = (children) => {
             }
             else if (queryLikeToggle === 2) {
                 if (item.like > queryLike) {
+                    let tempSlices = [...slices, item]
+                    slices = tempSlices
+                }
+            }
+            else if (queryLikeToggle === 3) {
+                if ((item.like.toString().toUpperCase().includes(queryLike.toString().toUpperCase()))) {
                     let tempSlices = [...slices, item]
                     slices = tempSlices
                 }
@@ -155,28 +167,30 @@ const TableContent = (children) => {
         return (
             <Modal>
                 {{ flag: modalToggle }}
-                <div>
-                    <div>
-                        <img alt="ga ke load" src={children.children.image} />
-                    </div>
-                    <div>
-                        <div>
-                            <label>Title</label>
-                            <label> {children.children.title}</label>
-                        </div>
-                        <div>
-                            <label>Like</label>
-                            {children.children.like}
-                        </div>
-                        <div>
-                            <label>Show Time</label>
-                            {new Date(children.children.showTime).toLocaleDateString()}
-                        </div>
-                    </div>
-                    <div>
-                        <button onClick={() => { handleDetail([]) }}>back</button>
-                    </div>
-                </div>
+                <ModalContainer>
+                    <ContentWrapper>
+                        <ContentThumbnail>
+                            <img style={{ borderRadius: '50%', backgroundSize: 'cover', height: '75%', width: '75%' }} alt="ga ke load" src={children.children.image} />
+                        </ContentThumbnail>
+                        <ContentContainer>
+                            <ContentData>
+                                <label style={{ fontSize: 22 }}>Title : </label>
+                                <label style={{ fontSize: 22 }}> {children.children.title}</label>
+                            </ContentData>
+                            <ContentData>
+                                <label style={{ fontSize: 22 }}>Like : </label>
+                                <label style={{ fontSize: 22 }}> {children.children.like}</label>
+                            </ContentData>
+                            <ContentData>
+                                <label style={{ fontSize: 22 }}>Show Time : </label>
+                                <label style={{ fontSize: 22 }}>{new Date(children.children.showTime).toLocaleDateString()}</label>
+                            </ContentData>
+                        </ContentContainer>
+                    </ContentWrapper>
+                    <ContentButtonWrapper>
+                        <TableButton onClick={() => { handleDetail([]) }}>back</TableButton>
+                    </ContentButtonWrapper>
+                </ModalContainer>
             </Modal>
         );
     }
