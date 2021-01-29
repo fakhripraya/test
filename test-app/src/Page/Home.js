@@ -17,9 +17,13 @@ import { trackPromise } from 'react-promise-tracker';
 function Home() {
 
     const [MovieDatas, setMovieDatas] = useState([])
+    const [autoDisplayTitle, setAutoDisplayTitle] = useState(false)
+    const [autoDisplayTitleRender, setAutoDisplayTitleRender] = useState([])
+    const [autoDisplayLike, setAutoDisplayLike] = useState(false)
+    const [autoDisplayLikeRender, setAutoDisplayLikeRender] = useState([])
     const [queryTitle, setqueryTitle] = useState("")
     const [queryShowTime, setqueryShowTime] = useState(null)
-    const [queryLike, setqueryLike] = useState(0)
+    const [queryLike, setqueryLike] = useState(null)
     const [queryLikeToggle, setqueryLikeToggle] = useState(3)
 
     useEffect(() => {
@@ -52,11 +56,38 @@ function Home() {
 
     function handleSearchTitle(e) {
         console.log(e.target.value);
-        setqueryTitle(e.target.value)
+        setqueryTitle(e.target.value);
+
+        if (e.target.value.length > 0) {
+            console.log(MovieDatas)
+            setAutoDisplayTitle(true);
+
+            let slices = []
+
+            MovieDatas.forEach((item, index) => {
+
+                // case sensitive
+                if (item.title.toUpperCase().includes(e.target.value.toUpperCase())) {
+                    let tempSlices = [...slices, item]
+                    slices = tempSlices
+                }
+
+            })
+
+            setAutoDisplayTitleRender(slices)
+        } else {
+            setAutoDisplayTitle(false);
+        }
+    }
+
+    function handleAutoTitle(item) {
+        console.log("masuk auto title");
+        console.log(item);
+        setqueryTitle(item);
     }
 
     function handleLike(e) {
-        setqueryLike(e.target.value)
+        setqueryLike(e.target.value);
     }
 
     function handleLikeToggle() {
@@ -73,14 +104,18 @@ function Home() {
                             <span style={{ fontSize: '28px' }}>Search</span>
                         </InputTitle>
                         <InputContent>
-                            <SearchInput onChange={handleSearchTitle} />
-                            {/* {display && (
-                                <div>
-                                    {
-
-                                    }
+                            <SearchInput onChange={handleSearchTitle} value={queryTitle} />
+                            {autoDisplayTitle && (
+                                <div style={{ position: 'absolute', zIndex: 999 }}>
+                                    {autoDisplayTitleRender.map((item, index) => {
+                                        return (
+                                            <div onClick={() => { handleAutoTitle(item.title) }}>
+                                                {item.title}
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-                            )} */}
+                            )}
                         </InputContent>
                     </InputContainer>
                     <InputContainer>
